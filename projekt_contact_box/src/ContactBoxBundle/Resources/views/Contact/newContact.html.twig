@@ -4,4 +4,9 @@
 
 {% block body %}
 <h1>Welcome to the Contact:newContactPost page</h1>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <br>
+    <input type="submit" name="Submit">
+    {{ form_end(form) }}
 {% endblock %}

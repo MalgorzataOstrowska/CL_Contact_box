@@ -2,6 +2,10 @@
 
 namespace ContactBoxBundle\Controller;
 
+use ContactBoxBundle\Form\ContactType;
+use ContactBoxBundle\Form\TweetType;
+use ContactBoxBundle\Entity\Contact;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -9,12 +13,14 @@ class ContactController extends Controller
 {
     /**
      * @Route("/new")
+     * @Template("ContactBoxBundle:Contact:newContact.html.twig")
      */
     public function newContactGetAction()
     {
-        return $this->render('ContactBoxBundle:Contact:newContact.html.twig', array(
-            // ...
-        ));
+        $contact = new Contact();
+
+        $form = $this->createForm(new ContactType(), $contact);
+        return ['form' => $form->createView()];
     }
 
     /**
