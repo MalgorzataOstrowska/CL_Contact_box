@@ -5,15 +5,18 @@ namespace ContactBoxBundle\Controller;
 use ContactBoxBundle\Form\ContactType;
 use ContactBoxBundle\Form\TweetType;
 use ContactBoxBundle\Entity\Contact;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class ContactController extends Controller
 {
     /**
-     * @Route("/new", name="newContact")
+     * @Route("/new")
      * @Template("ContactBoxBundle:Contact:newContact.html.twig")
+     * @Method("GET")
      */
     public function newContactGetAction()
     {
@@ -25,12 +28,25 @@ class ContactController extends Controller
 
     /**
      * @Route("/new")
+     * @Template("ContactBoxBundle:Contact:newContact.html.twig")
+     * @Method("POST")
      */
-    public function newContactPostAction()
+    public function newContactPostAction(Request $request)
     {
-        return $this->render('ContactBoxBundle:Contact:newContact.html.twig', array(
-            // ...
-        ));
+        $contact = new Contact();
+
+        $form = $this->createForm(new ContactType(), $contact);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $contact = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($contact);
+            $em->flush();
+
+            return $this->redirectToRoute('contactbox_contact_showcontact', ['id' => $contact->getId()]);
+        }
     }
 
     /**
