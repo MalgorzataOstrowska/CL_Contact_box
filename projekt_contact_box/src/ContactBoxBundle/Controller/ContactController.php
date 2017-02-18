@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class ContactController extends Controller
 {
     /**
-     * @Route("/new")
+     * @Route("/new", name="newContact")
      * @Template("ContactBoxBundle:Contact:newContact.html.twig")
      */
     public function newContactGetAction()

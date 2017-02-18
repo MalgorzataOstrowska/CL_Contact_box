@@ -1,12 +1,28 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}ContactBoxBundle:Contact:newContactPost{% endblock %}
+{% block title %}New Contact{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Contact:newContactPost page</h1>
+
     {{ form_start(form) }}
-    {{ form_widget(form) }}
+    <div class="row">
+        <div class="col-sm-2"> {{ form_label(form.firstName) }} </div>
+        <div> {{ form_widget(form.firstName) }} </div>
+    </div>
     <br>
-    <input type="submit" name="Submit">
+
+    <div class="row">
+        <div class="col-sm-2"> {{ form_label(form.lastName) }} </div>
+        <div> {{ form_widget(form.lastName) }} </div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-sm-2"> {{ form_label(form.description) }} </div>
+        <div> {{ form_widget(form.description) }} </div>
+    </div>
+
+    <br>
+    <input type="submit" value="Submit">
     {{ form_end(form) }}
 {% endblock %}
