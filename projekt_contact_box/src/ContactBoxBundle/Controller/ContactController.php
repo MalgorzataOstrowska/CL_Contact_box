@@ -109,12 +109,21 @@ class ContactController extends Controller
 
     /**
      * @Route("/")
+     * @Template("ContactBoxBundle:Contact:showAllContacts.html.twig")
      */
     public function showAllContactsAction()
     {
-        return $this->render('ContactBoxBundle:Contact:showAllContacts.html.twig', array(
-            // ...
-        ));
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT p
+                FROM ContactBoxBundle:Contact p
+                WHERE p.id > 1
+                ORDER BY p.firstName ASC'
+        );
+
+        $contacts = $query->getResult();
+
+        return ['contacts' => $contacts];
     }
 
 }
