@@ -3,26 +3,45 @@
 {% block title %}New Contact{% endblock %}
 
 {% block body %}
+    {% block form_start %}
+        {{ form_start(form) }}
+    {% endblock %}
 
-    {{ form_start(form) }}
     <div class="row">
         <div class="col-sm-2"> {{ form_label(form.firstName) }} </div>
-        <div> {{ form_widget(form.firstName) }} </div>
+        <div>
+            {% block firstName %}
+                {{ form_widget(form.firstName) }}
+            {% endblock %}
+        </div>
     </div>
     <br>
 
     <div class="row">
         <div class="col-sm-2"> {{ form_label(form.lastName) }} </div>
-        <div> {{ form_widget(form.lastName) }} </div>
+        <div>
+            {% block lastName %}
+                {{ form_widget(form.lastName) }}
+            {% endblock %}
+        </div>
     </div>
     <br>
 
     <div class="row">
         <div class="col-sm-2"> {{ form_label(form.description) }} </div>
-        <div> {{ form_widget(form.description) }} </div>
+        <div>
+            {% block description %}
+                {{ form_widget(form.description) }}
+            {% endblock %}
+        </div>
     </div>
 
-    <br>
-    <input type="submit" value="Submit">
-    {{ form_end(form) }}
+    {% block submit %}
+        <br>
+        <input type="submit" value="Submit">
+    {% endblock %}
+
+    {% block form_end %}
+        {{ form_end(form) }}
+    {% endblock %}
 {% endblock %}

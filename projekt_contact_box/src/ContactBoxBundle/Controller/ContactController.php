@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ContactController extends Controller
 {
@@ -91,12 +92,19 @@ class ContactController extends Controller
 
     /**
      * @Route("/{id}")
+     * @Template("ContactBoxBundle:Contact:showContact.html.twig")
      */
     public function showContactAction($id)
     {
-        return $this->render('ContactBoxBundle:Contact:showContact.html.twig', array(
-            // ...
-        ));
+        $contact =$this->getDoctrine()->getRepository('ContactBoxBundle:Contact')->find($id);
+
+        if(!$contact){
+            throw $this->createNotFoundException('Contact not found');
+        }
+
+        $form = $this->createForm(new ContactType());
+
+        return ['contact' => $contact, 'form' => $form->createView()];
     }
 
     /**
