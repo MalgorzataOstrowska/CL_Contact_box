@@ -5,15 +5,48 @@
 {% block body %}
 <h1>All Contacts:</h1>
 
-    {% for contact in contacts %}
-        <p>
-            <a href="{{ path('contactbox_contact_showcontact', {'id': contact.id}) }}">
-                {{ contact.firstName }} {{ contact.lastName }}
-            </a>
-        </p>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Delete</th>
+            <th>Edit</th>
+        </tr>
+        </thead>
+        <tbody>
 
-    {% else %}
-        <p>No contacts</p>
-    {% endfor %}
+            {% for contact in contacts %}
+                <tr>
+                    <td class="col-sm-5">
+                        <a href="{{ path('contactbox_contact_showcontact', {'id': contact.id}) }}">
+                            <div>{{ contact.firstName }}</div>
+                        </a>
+                    </td>
+                    <td class="col-sm-5">
+                        <a href="{{ path('contactbox_contact_showcontact', {'id': contact.id}) }}">
+                            <div>{{ contact.lastName }}</div>
+                        </a>
+                    </td>
+
+                    <td class="col-sm-1">
+                        <a href="">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </td>
+                    <th class="col-sm-1">
+                        <a href="">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                    </th>
+
+                </tr>
+            {% else %}
+                <p>No contacts</p>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
 
 {% endblock %}
