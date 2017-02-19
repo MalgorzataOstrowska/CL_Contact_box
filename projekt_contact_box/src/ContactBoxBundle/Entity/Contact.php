@@ -3,15 +3,22 @@
 namespace ContactBoxBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Contact
  *
  * @ORM\Table(name="contact")
  * @ORM\Entity(repositoryClass="ContactBoxBundle\Repository\ContactRepository")
+
  */
 class Contact
 {
+    /**
+     * @ORM\ManyToOne(targetEntity="Address", inversedBy="$contacts")
+     * @ORM\JoinColumn(name="address_id", referencedColumnName="id")
+     */
+    private $address;
     /**
      * @var int
      *

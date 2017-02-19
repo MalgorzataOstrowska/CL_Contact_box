@@ -3,6 +3,7 @@
 namespace ContactBoxBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Address
@@ -12,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Address
 {
+    /**
+     * @ORM\OneToMany(targetEntity="Contact", mappedBy="address")
+     */
+    private $contacts;
+
+    public function __construct() {
+        $this->contacts = new ArrayCollection();
+    }
+
     /**
      * @var int
      *
