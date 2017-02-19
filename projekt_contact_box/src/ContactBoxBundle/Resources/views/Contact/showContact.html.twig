@@ -10,4 +10,10 @@
 
 {% block form_start %}      {{ '' }}     {% endblock %}
 {% block form_end %}        {{ '' }}     {% endblock %}
-{% block submit %}          {{ '' }}     {% endblock %}
+
+{% block submit %}
+    <br>
+    <a href="{{ path('contactbox_contact_modifycontactget', {'id': contact.id}) }} " class="btn btn-info">
+        Modify <span class="glyphicon glyphicon-edit"></span>
+    </a>
+{% endblock %}

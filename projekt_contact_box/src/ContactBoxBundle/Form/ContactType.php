@@ -16,7 +16,7 @@ class ContactType extends AbstractType
         $builder
             ->add('firstName', null, ['label' => 'First name'])
             ->add('lastName', null, ['label' => 'Last name'])
-            ->add('description', 'textarea', ['label' => 'Description'])
+            ->add('description', null, ['label' => 'Description'])
         ;
     }
     
