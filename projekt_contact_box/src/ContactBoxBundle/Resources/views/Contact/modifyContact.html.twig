@@ -1,3 +1,53 @@
 {% extends "ContactBoxBundle:Contact:newContact.html.twig" %}
 
 {% block title %}Modify Contact{% endblock %}
+
+{% block addAddress %}
+    <br><br><br>
+
+    {{ form_start(formAddress) }}
+    <div class="row">
+        <div class="col-sm-2"> {{ form_label(formAddress.city) }}<b>:</b> </div>
+        <div>
+            {% block city %}
+                {{ form_widget(formAddress.city) }}
+            {% endblock %}
+        </div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-sm-2"> {{ form_label(formAddress.street) }}<b>:</b> </div>
+        <div>
+            {% block street %}
+                {{ form_widget(formAddress.street) }}
+            {% endblock %}
+        </div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-sm-2"> {{ form_label(formAddress.houseNumber) }}<b>:</b> </div>
+        <div>
+            {% block houseNumber %}
+                {{ form_widget(formAddress.houseNumber) }}
+            {% endblock %}
+        </div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-sm-2"> {{ form_label(formAddress.apartmentNumber) }}<b>:</b> </div>
+        <div>
+            {% block apartmentNumber %}
+                {{ form_widget(formAddress.apartmentNumber) }}
+            {% endblock %}
+        </div>
+    </div>
+
+
+    <br>
+    <input type="submit" value="Add address">
+
+    {{ form_end(formAddress) }}
+{% endblock %}

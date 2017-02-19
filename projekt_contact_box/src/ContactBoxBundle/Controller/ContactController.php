@@ -2,6 +2,8 @@
 
 namespace ContactBoxBundle\Controller;
 
+use ContactBoxBundle\Entity\Address;
+use ContactBoxBundle\Form\AddressType;
 use ContactBoxBundle\Form\ContactType;
 use ContactBoxBundle\Form\TweetType;
 use ContactBoxBundle\Entity\Contact;
@@ -55,7 +57,7 @@ class ContactController extends Controller
      * @Template("ContactBoxBundle:Contact:modifyContact.html.twig")
      * @Method("GET")
      */
-    public function modifyContactGetAction($id)
+    public function modifyContactGetAction(Request $request, $id)
     {
         $contact = $this
             ->getDoctrine()
@@ -68,7 +70,9 @@ class ContactController extends Controller
 
         $form = $this->createForm(new ContactType(), $contact);
 
-        return ['form' => $form->createView()];
+        $formAddress = $this->createForm(new AddressType());
+
+        return ['form' => $form->createView(), 'formAddress' => $formAddress->createView()];
     }
 
     /**
