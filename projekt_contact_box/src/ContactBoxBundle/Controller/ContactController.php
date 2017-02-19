@@ -73,12 +73,40 @@ class ContactController extends Controller
 
     /**
      * @Route("/{id}/modify")
+     * @Template("ContactBoxBundle:Contact:modifyContact.html.twig")
+     * @Method("POST")
      */
-    public function modifyContactPostAction()
+    public function modifyContactPostAction(Request $request, $id)
     {
-        return $this->render('ContactBoxBundle:Contact:modifyContact.html.twig', array(
-            // ...
-        ));
+        $contact = $this
+            ->getDoctrine()
+            ->getRepository('ContactBoxBundle:Contact')
+            ->find($id);
+
+        if (!$contact) {
+            throw $this->createNotFoundException('Contact not found');
+        }
+
+        $form = $this->createForm(new ContactType(), $contact);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this
+                ->getDoctrine()
+                ->getManager();
+
+            $em->flush();
+
+            return $this->redirectToRoute(
+                'contactbox_contact_showcontact',
+                [
+                    'id' => $contact->getId()
+                ]
+            );
+        }
+
+        return ['form' => $form->createView()];
     }
 
     /**
