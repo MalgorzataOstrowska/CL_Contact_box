@@ -8,10 +8,10 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Delete</th>
-            <th>Edit</th>
+            <th>{{ form_label(form.firstName) }}</th>
+            <th>{{ form_label(form.lastName) }}</th>
+            <th class="text-center">Delete</th>
+            <th class="text-center">Edit</th>
         </tr>
         </thead>
         <tbody>
@@ -29,12 +29,12 @@
                         </a>
                     </td>
 
-                    <td class="col-sm-1">
+                    <td class="col-sm-1 text-center">
                         <a href="{{ path('contactbox_contact_deletecontact', {'id': contact.id}) }}">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>
                     </td>
-                    <th class="col-sm-1">
+                    <th class="col-sm-1 text-center">
                         <a href="">
                             <span class="glyphicon glyphicon-edit"></span>
                         </a>

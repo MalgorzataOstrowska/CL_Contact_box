@@ -8,7 +8,7 @@
     {% endblock %}
 
     <div class="row">
-        <div class="col-sm-2"> {{ form_label(form.firstName) }} </div>
+        <div class="col-sm-2"> {{ form_label(form.firstName) }}<b>:</b> </div>
         <div>
             {% block firstName %}
                 {{ form_widget(form.firstName) }}
@@ -18,7 +18,7 @@
     <br>
 
     <div class="row">
-        <div class="col-sm-2"> {{ form_label(form.lastName) }} </div>
+        <div class="col-sm-2"> {{ form_label(form.lastName) }}<b>:</b> </div>
         <div>
             {% block lastName %}
                 {{ form_widget(form.lastName) }}
@@ -28,7 +28,7 @@
     <br>
 
     <div class="row">
-        <div class="col-sm-2"> {{ form_label(form.description) }} </div>
+        <div class="col-sm-2"> {{ form_label(form.description) }}<b>:</b> </div>
         <div>
             {% block description %}
                 {{ form_widget(form.description) }}

@@ -121,7 +121,9 @@ class ContactController extends Controller
 
         $contacts = $query->getResult();
 
-        return ['contacts' => $contacts];
+        $form = $this->createForm(new ContactType());
+
+        return ['contacts' => $contacts, 'form' => $form->createView()];
     }
 
 }
