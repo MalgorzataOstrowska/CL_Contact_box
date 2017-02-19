@@ -73,21 +73,19 @@ class ContactController extends Controller
     /**
      * @Route("/{id}/delete")
      */
-    public function deleteContactGetAction($id)
+    public function deleteContactAction($id)
     {
-        return $this->render('ContactBoxBundle:Contact:deleteContact.html.twig', array(
-            // ...
-        ));
-    }
+        $em = $this->getDoctrine()->getManager();
+        $contact =$em->getRepository('ContactBoxBundle:Contact')->find($id);
 
-    /**
-     * @Route("/{id}/delete")
-     */
-    public function deleteContactPostAction($id)
-    {
-        return $this->render('ContactBoxBundle:Contact:deleteContact.html.twig', array(
-            // ...
-        ));
+        if(!$contact){
+            throw $this->createNotFoundException('Contact not found');
+        }
+
+        $em->remove($contact);
+        $em->flush();
+
+        return $this->redirectToRoute('contactbox_contact_showallcontacts');
     }
 
     /**
