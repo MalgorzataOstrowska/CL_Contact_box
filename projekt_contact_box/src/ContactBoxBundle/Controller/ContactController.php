@@ -52,12 +52,23 @@ class ContactController extends Controller
 
     /**
      * @Route("/{id}/modify")
+     * @Template("ContactBoxBundle:Contact:modifyContact.html.twig")
+     * @Method("GET")
      */
-    public function modifyContactGetAction()
+    public function modifyContactGetAction($id)
     {
-        return $this->render('ContactBoxBundle:Contact:modifyContact.html.twig', array(
-            // ...
-        ));
+        $contact = $this
+            ->getDoctrine()
+            ->getRepository('ContactBoxBundle:Contact')
+            ->find($id);
+
+        if (!$contact) {
+            throw $this->createNotFoundException('Contact not found');
+        }
+
+        $form = $this->createForm(new ContactType(), $contact);
+
+        return ['form' => $form->createView()];
     }
 
     /**
