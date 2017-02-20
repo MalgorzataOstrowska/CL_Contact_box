@@ -6,6 +6,13 @@
 {% block firstName %}       {{ contact.firstName }}     {% endblock %}
 {% block lastName %}        {{ contact.lastName }}      {% endblock %}
 {% block description %}     {{ contact.description }}   {% endblock %}
+{% block address %}
+    {% if address is null %}
+        {{ '' }}
+    {% else %}
+        {{ address }}
+    {% endif %}
+{% endblock %}
 
 
 {% block form_start %}      {{ '' }}     {% endblock %}

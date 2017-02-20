@@ -2,6 +2,7 @@
 
 namespace ContactBoxBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,6 +18,9 @@ class ContactType extends AbstractType
             ->add('firstName', null, ['label' => 'First name'])
             ->add('lastName', null, ['label' => 'Last name'])
             ->add('description', null, ['label' => 'Description'])
+            ->add('address', EntityType::class,
+                ['class' => 'ContactBoxBundle:Address',
+                    'choice_label' => 'id'])
         ;
     }
     

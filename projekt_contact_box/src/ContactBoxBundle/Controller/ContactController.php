@@ -143,7 +143,13 @@ class ContactController extends Controller
 
         $form = $this->createForm(new ContactType());
 
-        return ['contact' => $contact, 'form' => $form->createView()];
+        if($contact->getAddress()){
+            $address = $contact->getAddress()->getId();
+        } else {
+            $address = '';
+        }
+//        return new Response(':-)');
+        return ['contact' => $contact, 'form' => $form->createView(), 'address' => $address];
     }
 
     /**

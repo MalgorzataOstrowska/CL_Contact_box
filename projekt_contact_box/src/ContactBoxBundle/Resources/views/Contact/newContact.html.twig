@@ -35,6 +35,19 @@
             {% endblock %}
         </div>
     </div>
+    <br>
+
+    <div class="row">
+        <div class="col-sm-2"> {{ form_label(form.address) }}<b>:</b> </div>
+        <div>
+            {% block address %}
+                {{ form_widget(form.address) }}
+            {% endblock %}
+        </div>
+    </div>
+    <br>
+
+
 
     {% block submit %}
         <br>
@@ -45,5 +58,4 @@
         {{ form_end(form) }}
     {% endblock %}
 
-    {% block addAddress %}{% endblock %}
 {% endblock %}
